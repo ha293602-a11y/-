@@ -180,34 +180,65 @@
             font-weight: bold;
         }
         
-        /* Video Container */
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            margin: 30px 0;
+        /* Video Card Styling */
+        .video-card {
+            background: rgba(0,0,0,0.4);
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            padding: 30px;
+            margin: 20px 0;
             border: 2px solid rgba(255,255,255,0.1);
-            background: #000;
-        }
-        
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        .video-caption {
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 15px 40px rgba(0,168,232,0.3);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1a1f4b 0%, #0a0e27 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        
+        .video-thumbnail::before {
+            content: '▶';
+            font-size: 60px;
+            color: var(--accent);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .video-thumbnail::before {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        
+        .video-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
             margin-top: 15px;
-            font-size: 1rem;
-            color: var(--secondary);
-            font-style: italic;
+            transition: all 0.3s ease;
+        }
+        
+        .video-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,86,179,0.4);
         }
         
         /* Cards Layout */
@@ -383,15 +414,6 @@
             animation: float 6s ease-in-out infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
         /* Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
@@ -415,14 +437,6 @@
             font-weight: 700;
         }
         
-        .video-section {
-            background: rgba(0,0,0,0.3);
-            padding: 40px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
         .section-intro {
             font-size: 1.3rem;
             margin-bottom: 30px;
@@ -430,6 +444,20 @@
             background: rgba(0,168,232,0.1);
             border-right: 4px solid var(--secondary);
             border-radius: 10px;
+        }
+        
+        .video-small {
+            padding: 20px;
+            margin-top: 15px;
+        }
+        
+        .video-small .video-thumbnail {
+            height: 150px;
+        }
+        
+        .video-small .video-link {
+            padding: 8px 20px;
+            font-size: 0.9rem;
         }
     </style>
 <base target="_blank">
@@ -522,16 +550,15 @@
                             <li>الطب الشخصي الدقيق</li>
                         </ul>
                         
-                        <div class="video-section">
-                            <h3 style="margin-top: 0;">🎥 فيديو توضيحي</h3>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/ad79nYk2keg" 
-                                        allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="video-caption">
+                        <div class="video-card">
+                            <h3 style="margin-top: 0; color: var(--accent);">🎥 فيديو توضيحي</h3>
+                            <div class="video-thumbnail"></div>
+                            <p style="font-size: 1rem; margin-bottom: 15px;">
                                 مقدمة شاملة عن الذكاء الاصطناعي ومستقبله
-                            </div>
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=ad79nYk2keg" target="_blank" class="video-link">
+                                مشاهدة الفيديو على YouTube →
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -561,17 +588,15 @@
                             <li>المراقبة الصحية عن بعد</li>
                         </ul>
                         
-                        <div class="video-wrapper" style="margin-top: 20px;">
-                            <iframe src="https://www.youtube.com/embed/8V2S9D3iXhM" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-caption">
-                            الذكاء الاصطناعي في الجراحة والطب الدقيق
+                        <div class="video-card video-small">
+                            <div class="video-thumbnail"></div>
+                            <a href="https://youtu.be/8V2S9D3iXhM" target="_blank" class="video-link">
+                                مشاهدة فيديو الجراحة الروبوتية →
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Education Card -->
+                    <!-- Education Card - UPDATED LINK -->
                     <div class="card">
                         <h3>📚 التعليم</h3>
                         <p>
@@ -586,17 +611,15 @@
                             <li>الدعم اللغوي الفوري</li>
                         </ul>
                         
-                        <div class="video-wrapper" style="margin-top: 20px;">
-                            <iframe src="https://www.youtube.com/embed/8UtsjfsvLGI" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-caption">
-                            مستقبل التعليم مع الذكاء الاصطناعي
+                        <div class="video-card video-small">
+                            <div class="video-thumbnail"></div>
+                            <a href="https://youtu.be/aP_xS7SnSIA" target="_blank" class="video-link">
+                                مشاهدة فيديو التعليم والذكاء الاصطناعي →
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Industry Card -->
+                    <!-- Industry Card - UPDATED LINK -->
                     <div class="card">
                         <h3>🏭 الصناعة 4.0</h3>
                         <p>
@@ -611,13 +634,11 @@
                             <li>إدارة الطاقة الذكية</li>
                         </ul>
                         
-                        <div class="video-wrapper" style="margin-top: 20px;">
-                            <iframe src="https://www.youtube.com/embed/2xTcphmP8Kg" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-caption">
-                            الثورة الصناعية الرابعة والذكاء الاصطناعي
+                        <div class="video-card video-small">
+                            <div class="video-thumbnail"></div>
+                            <a href="https://youtu.be/b9mJrzdlfR8" target="_blank" class="video-link">
+                                مشاهدة فيديو الصناعة 4.0 →
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -659,22 +680,19 @@
                     </div>
                 </div>
 
-                <div class="video-section" style="margin-top: 40px;">
-                    <h3>🎥 نقاش معمق حول آثار الذكاء الاصطناعي</h3>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/RzkD_rrnhDQ" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-caption">
-                        مستقبل العمل والمجتمع في عصر الذكاء الاصطناعي
-                    </div>
+                <div class="video-card" style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="color: var(--accent);">🎥 نقاش معمق حول آثار الذكاء الاصطناعي</h3>
+                    <div class="video-thumbnail"></div>
+                    <p>مستقبل العمل والمجتمع في عصر الذكاء الاصطناعي</p>
+                    <a href="https://www.youtube.com/watch?v=RzkD_rrnhDQ" target="_blank" class="video-link">
+                        مشاهدة الفيديو →
+                    </a>
                 </div>
             </div>
             <div class="slide-number">04</div>
         </div>
 
-        <!-- Slide 5: Saudi Achievements -->
+        <!-- Slide 5: Saudi Achievements - UPDATED LINK -->
         <div class="slide">
             <div class="grid-pattern"></div>
             <div class="content">
@@ -724,22 +742,19 @@
                     </div>
                 </div>
 
-                <div class="video-section" style="margin-top: 40px;">
-                    <h3>🎥 إنجازات سدايا في مكافحة كورونا</h3>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/1hX4E6iBz8E" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-caption">
-                        كيف ساعد الذكاء الاصطناعي في إدارة الأزمة الصحية
-                    </div>
+                <div class="video-card" style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="color: var(--accent);">🎥 إنجازات سدايا في مكافحة كورونا</h3>
+                    <div class="video-thumbnail"></div>
+                    <p>كيف ساعد الذكاء الاصطناعي في إدارة الأزمة الصحية</p>
+                    <a href="https://youtu.be/bW4hui3QJjw" target="_blank" class="video-link">
+                        مشاهدة الفيديو →
+                    </a>
                 </div>
             </div>
             <div class="slide-number">05</div>
         </div>
 
-        <!-- Slide 6: Vision 2030 -->
+        <!-- Slide 6: Vision 2030 - UPDATED LINKS -->
         <div class="slide">
             <div class="grid-pattern"></div>
             <div class="content">
@@ -747,7 +762,7 @@
                 
                 <div class="two-column">
                     <div>
-                        <h3>🌆 مشروع نيوم</h3>
+                        <h3>🌆 مشروع نيوم - THE LINE</h3>
                         <p>
                             مدينة المستقبل <span class="highlight">THE LINE</span> ستعتمد بالكامل على الذكاء الاصطناعي 
                             لإدارة جميع خدماتها، حيث ستستخدم التقنيات المتقدمة في:
@@ -760,13 +775,11 @@
                             <li>الروبوتات والأتمتة</li>
                         </ul>
                         
-                        <div class="video-wrapper" style="margin-top: 20px;">
-                            <iframe src="https://www.youtube.com/embed/0n2x7sG8jQk" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-caption">
-                            نيوم: المدينة التي تعتمد على الذكاء الاصطناعي
+                        <div class="video-card video-small">
+                            <div class="video-thumbnail"></div>
+                            <a href="https://youtu.be/zZ2sihZeXCU" target="_blank" class="video-link">
+                                مشاهدة فيديو مشروع نيوم - THE LINE →
+                            </a>
                         </div>
                     </div>
 
@@ -789,13 +802,11 @@
                             في مجالات التحليل والبرمجة والأخلاقيات الرقمية.
                         </p>
                         
-                        <div class="video-wrapper" style="margin-top: 20px;">
-                            <iframe src="https://www.youtube.com/embed/5JADwW11Ous" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="video-caption">
-                            مستقبل العمل في السعودية مع الذكاء الاصطناعي
+                        <div class="video-card video-small">
+                            <div class="video-thumbnail"></div>
+                            <a href="https://youtu.be/ZtFsyo2hfO8" target="_blank" class="video-link">
+                                مشاهدة فيديو سوق العمل المستقبلي →
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -803,7 +814,7 @@
             <div class="slide-number">06</div>
         </div>
 
-        <!-- Slide 7: Innovations -->
+        <!-- Slide 7: Innovations - UPDATED LINK -->
         <div class="slide">
             <div class="grid-pattern"></div>
             <div class="content">
@@ -861,22 +872,19 @@
                     </div>
                 </div>
 
-                <div class="video-section" style="margin-top: 40px;">
-                    <h3>🎥 مبادرة سماي: مليون سعودي في الذكاء الاصطناعي</h3>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/4Q3B7V6L9kM" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-caption">
-                        أكبر برنامج تدريبي على الذكاء الاصطناعي في العالم
-                    </div>
+                <div class="video-card" style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="color: var(--accent);">🎥 مبادرة سدايا – مليون سعودي في الذكاء الاصطناعي</h3>
+                    <div class="video-thumbnail"></div>
+                    <p>أكبر برنامج تدريبي على الذكاء الاصطناعي في العالم</p>
+                    <a href="https://youtube.com/shorts/hohQBwve07U" target="_blank" class="video-link">
+                        مشاهدة الفيديو (Shorts) →
+                    </a>
                 </div>
             </div>
             <div class="slide-number">07</div>
         </div>
 
-        <!-- Slide 8: Quality of Life -->
+        <!-- Slide 8: Quality of Life - UPDATED LINK -->
         <div class="slide">
             <div class="grid-pattern"></div>
             <div class="content">
@@ -915,16 +923,13 @@
                     </div>
 
                     <div>
-                        <div class="video-section">
-                            <h3>🎥 المدن الذكية وجودة الحياة</h3>
-                            <div class="video-wrapper">
-                                <iframe src="https://www.youtube.com/embed/6nju5zPLMnY" 
-                                        allowfullscreen>
-                                </iframe>
-                            </div>
-                            <div class="video-caption">
-                                كيف تُحسّن المدن الذكية حياتنا اليومية
-                            </div>
+                        <div class="video-card">
+                            <h3 style="color: var(--accent);">🎥 المدن الذكية وجودة الحياة</h3>
+                            <div class="video-thumbnail" style="height: 250px;"></div>
+                            <p>كيف تُحسّن المدن الذكية حياتنا اليومية</p>
+                            <a href="https://youtu.be/PQnKEWW2lGw" target="_blank" class="video-link">
+                                مشاهدة الفيديو →
+                            </a>
                         </div>
 
                         <div class="stats-container" style="margin-top: 30px;">
@@ -943,7 +948,7 @@
             <div class="slide-number">08</div>
         </div>
 
-        <!-- Slide 9: Economic Impact -->
+        <!-- Slide 9: Economic Impact - UPDATED LINK -->
         <div class="slide">
             <div class="grid-pattern"></div>
             <div class="content">
@@ -990,22 +995,19 @@
                     </div>
                 </div>
 
-                <div class="video-section" style="margin-top: 40px;">
-                    <h3>🎥 الاقتصاد الرقمي في السعودية</h3>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/8eXj97LeFGI" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-caption">
-                        دور التحول الرقمي في دعم الاقتصاد الوطني
-                    </div>
+                <div class="video-card" style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <h3 style="color: var(--accent);">🎥 الاقتصاد الرقمي في السعودية</h3>
+                    <div class="video-thumbnail"></div>
+                    <p>دور التحول الرقمي في دعم الاقتصاد الوطني</p>
+                    <a href="https://youtu.be/rxa_oFNY7wQ" target="_blank" class="video-link">
+                        مشاهدة الفيديو →
+                    </a>
                 </div>
             </div>
             <div class="slide-number">09</div>
         </div>
 
-        <!-- Slide 10: Future -->
+        <!-- Slide 10: Future - UPDATED LINK -->
         <div class="slide">
             <div class="grid-pattern"></div>
             <div class="content" style="text-align: center;">
@@ -1054,16 +1056,13 @@
                     </div>
                 </div>
 
-                <div class="video-section" style="max-width: 900px; margin: 40px auto;">
-                    <h3>🎥 مستقبل السعودية مع الذكاء الاصطناعي</h3>
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/vyQZ13lJEZc" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-caption">
-                        رؤية 2030: نحو قيادة العالم في الذكاء الاصطناعي
-                    </div>
+                <div class="video-card" style="max-width: 800px; margin: 40px auto;">
+                    <h3 style="color: var(--accent);">🎥 مستقبل السعودية مع الذكاء الاصطناعي</h3>
+                    <div class="video-thumbnail" style="height: 300px;"></div>
+                    <p>رؤية 2030: نحو قيادة العالم في الذكاء الاصطناعي</p>
+                    <a href="https://youtu.be/yLB18T7DkNY" target="_blank" class="video-link">
+                        مشاهدة الفيديو الختامي →
+                    </a>
                 </div>
 
                 <div style="margin-top: 50px; padding: 30px; background: var(--gradient-1); border-radius: 20px; display: inline-block;">
@@ -1123,8 +1122,6 @@
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             const container = document.getElementById('slideContainer');
-            const slides = document.querySelectorAll('.slide');
-            const currentScroll = container.scrollTop;
             const slideHeight = window.innerHeight;
             
             if (e.key === 'ArrowDown' || e.key === 'PageDown') {
